@@ -1,0 +1,3 @@
+
+ª
+9xocc_link_krnl_nearest.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0$cd3e5074-cb1b-4404-a589-c9600e0e7789áxocc  -t sw_emu --platform xilinx_kcu1500_4ddr-xpr_4_0 --save-temps -l --nk krnl_linear_search:2 -oxclbin/krnl_nearest.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0.xclbin xclbin/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0.xo *·"²/mnt/project/tl6/example_repo/SDAccel_Examples/acceleration/nearest_neighbor_linear_search/_x/reports/link/xocc_link_krnl_nearest.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0_guidance.html2¨"£/mnt/project/tl6/example_repo/SDAccel_Examples/acceleration/nearest_neighbor_linear_search/_x/xocc_link_krnl_nearest.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0_guidance.pb

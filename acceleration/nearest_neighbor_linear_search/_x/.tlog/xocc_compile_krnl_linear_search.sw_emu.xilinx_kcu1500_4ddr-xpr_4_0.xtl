@@ -1,0 +1,138 @@
+<ENTRY>
+{
+    "EntryID": "1",
+    "Type": "CmdStep",
+    "DateTimestamp": "2019-Jun-14 12:33:28.828000",
+    "TimestampMillis": "45208828",
+    "Payload": {
+        "CmdStepID": "371aa91a-869d-42e7-b2e1-c6d1702258ca",
+        "Command": "xocc",
+        "LogFile": "$LOGDIR\/..\/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0\/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0.steps.log",
+        "CommandLine": "\/opt\/Xilinx\/SDx\/2018.2\/bin\/unwrapped\/lnx64.o\/xocc  --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp param:compiler.enableRunInBitstreamGeneration=1 --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" -t sw_emu --platform xilinx_kcu1500_4ddr-xpr_4_0 --save-temps -c -k krnl_linear_search -Isrc -oxclbin\/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0.xo src\/krnl_linear_search.cpp ",
+        "OptionArgs": [
+            "-t",
+            "sw_emu",
+            "--platform",
+            "xilinx_kcu1500_4ddr-xpr_4_0",
+            "--save-temps",
+            "-c",
+            "-k",
+            "krnl_linear_search",
+            "-Isrc",
+            "-oxclbin\/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0.xo",
+            "src\/krnl_linear_search.cpp"
+        ]
+    }
+}
+</ENTRY>
+<ENTRY>
+{
+    "EntryID": "2",
+    "Type": "Status",
+    "DateTimestamp": "2019-Jun-14 12:33:28.828000",
+    "TimestampMillis": "45208828",
+    "Payload": {
+        "CmdStepID": "371aa91a-869d-42e7-b2e1-c6d1702258ca",
+        "Status": "Start"
+    }
+}
+</ENTRY>
+<ENTRY>
+{
+    "EntryID": "3",
+    "Type": "FlowMetaData",
+    "DateTimestamp": "2019-Jun-14 12:33:31.071000",
+    "TimestampMillis": "45211071",
+    "Payload": {
+        "HardwarePlatform": "xilinx_kcu1500_4ddr-xpr_4_0.xpfm",
+        "HardwareDSA": "xilinx_kcu1500_4ddr-xpr_4_0.dsa",
+        "PlatformDirectory": "\/opt\/Xilinx\/SDx\/2018.2\/platforms\/xilinx_kcu1500_4ddr-xpr_4_0",
+        "Runtime": "OpenCL",
+        "SystemConfiguration": "Linux",
+        "BinaryContainer": "",
+        "BuildFlow": "COMPILE",
+        "Target": "SW_EMU",
+        "Kernels": [
+            {
+                "KernelName": "krnl_linear_search",
+                "KernelObj": "$LOGDIR\/..\/..\/xclbin\/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0.xo",
+                "KernelSrcs": [
+                    "$LOGDIR\/..\/..\/src\/krnl_linear_search.cpp"
+                ]
+            }
+        ]
+    }
+}
+</ENTRY>
+<ENTRY>
+{
+    "EntryID": "4",
+    "Type": "SubCmdStep",
+    "DateTimestamp": "2019-Jun-14 12:33:31.074000",
+    "TimestampMillis": "45211074",
+    "Payload": {
+        "CmdStepID": "8cdadb65-05bb-4c1a-9693-856833534de1",
+        "Command": "vivado_hls",
+        "LogFile": "$LOGDIR\/..\/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0\/impl\/kernels\/krnl_linear_search\/vivado_hls.log",
+        "TransactionLogFile": "",
+        "CommandLine": "vivado_hls -f \/mnt\/project\/tl6\/example_repo\/SDAccel_Examples\/acceleration\/nearest_neighbor_linear_search\/_x\/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0\/impl\/kernels\/krnl_linear_search\/krnl_linear_search.tcl -messageDb vivado_hls.pb",
+        "OptionArgs": [
+            "vivado_hls",
+            "-f",
+            "\/mnt\/project\/tl6\/example_repo\/SDAccel_Examples\/acceleration\/nearest_neighbor_linear_search\/_x\/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0\/impl\/kernels\/krnl_linear_search\/krnl_linear_search.tcl",
+            "-messageDb",
+            "vivado_hls.pb"
+        ]
+    }
+}
+</ENTRY>
+<ENTRY>
+{
+    "EntryID": "5",
+    "Type": "Status",
+    "DateTimestamp": "2019-Jun-14 12:33:31.074000",
+    "TimestampMillis": "45211074",
+    "Payload": {
+        "CmdStepID": "8cdadb65-05bb-4c1a-9693-856833534de1",
+        "Status": "Start"
+    }
+}
+</ENTRY>
+<ENTRY>
+{
+    "EntryID": "6",
+    "Type": "Status",
+    "DateTimestamp": "2019-Jun-14 12:33:43.035000",
+    "TimestampMillis": "45223035",
+    "Payload": {
+        "CmdStepID": "8cdadb65-05bb-4c1a-9693-856833534de1",
+        "Status": "Passed"
+    }
+}
+</ENTRY>
+<ENTRY>
+{
+    "EntryID": "7",
+    "Type": "Report",
+    "DateTimestamp": "2019-Jun-14 12:33:43.073000",
+    "TimestampMillis": "45223073",
+    "Payload": {
+        "File": "$LOGDIR\/..\/reports\/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0\/xocc_compile_krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0_guidance.html",
+        "Type": "HTML",
+        "ReportType": "GLOBAL_RULECHECK_GUIDANCE",
+        "KernelName": ""
+    }
+}
+</ENTRY>
+<ENTRY>
+{
+    "EntryID": "8",
+    "Type": "Status",
+    "DateTimestamp": "2019-Jun-14 12:33:43.103000",
+    "TimestampMillis": "45223103",
+    "Payload": {
+        "CmdStepID": "371aa91a-869d-42e7-b2e1-c6d1702258ca",
+        "Status": "Passed"
+    }
+}
+</ENTRY>
