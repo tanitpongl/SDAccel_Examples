@@ -244,3 +244,24 @@ int main(int argc, char** argv) {
 
 	return EXIT_SUCCESS;
 }
+
+class Test
+{
+    private:
+        int id;
+
+    public:
+        Test(int x){
+            id = x;
+            std::cout << "Init " << id << std::endl;
+        }
+
+        void run(){
+            std::cout << "Run " << id << std::endl;
+        }
+};
+
+extern "C" {
+    Test* Init(int id){ return new Test(id); }
+    void Run(Test* t){ t->run(); }
+}

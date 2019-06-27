@@ -60,12 +60,23 @@ import sys
 import os
 #os.environ[XCL_EMULATION_MODE]="sw_emu"
 my_env = os.environ.copy()
-proc = subprocess.Popen("./nearest",
+'''proc = subprocess.Popen("./nearest",
     stdin=subprocess.PIPE,
     stdout=subprocess.PIPE,
     env=my_env)
-
+'''
+proc = subprocess.Popen("./test/test",
+    stdin=subprocess.PIPE,
+    stdout=subprocess.PIPE,
+    env=my_env)
 print("start sending data")
+while True:
+  line = proc.stdout.readline()
+  if not line:
+    break
+  #the real code does filtering here
+  print( "test:", line.rstrip())
+'''
 #np.savetxt(proc.stdin, first_layer_output.flatten(), delimiter=' ',fmt ='%f')
 testarray = np.array([1.2,23.2,1.2,3331.1,23.2,0.1])
 np.savetxt(proc.stdin, testarray.flatten(), delimiter=' ',fmt ='%f')
@@ -80,7 +91,7 @@ while True:
     break
   #the real code does filtering here
   print( "test:", line.rstrip())
-
+'''
 
 
 #output = proc.communicate("output_to_exec".encode("ascii"))[0]
