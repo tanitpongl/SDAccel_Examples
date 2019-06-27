@@ -8,22 +8,22 @@ include $(COMMON_REPO)/libs/opencl/opencl.mk
 # Nearest Neighbor Search Application
 nearest_SRCS=./src/linear_search.c $(xcl_SRCS)
 nearest_HDRS=./src/linear_search.h $(xcl_HDRS)
-nearest_CXXFLAGS=-I./src/ -I$(XILINX_SDACCEL)/Vivado_HLS/include/ $(opencl_CXXFLAGS) $(xcl_CXXFLAGS) -shared -fPIC,-soname,libmain.so -o libmain.so
+nearest_CXXFLAGS=-I./src/ -I$(XILINX_SDACCEL)/Vivado_HLS/include/ $(opencl_CXXFLAGS) $(xcl_CXXFLAGS) -shared -fPIC
 nearest_LDFLAGS=$(opencl_LDFLAGS)
 
-EXES=mainlib.so
+EXES=nearest
 
 # Nearest Neighbor Kernel
 krnl_nearest_SRCS=./src/krnl_linear_search.cpp
 krnl_nearest_CLFLAGS=--kernel krnl_linear_search -I./src/
-krnl_nearest_NDEVICES=xilinx:adm-pcie-7v3:1ddr
+krnl_nearest_NDEVICES=xilinx:xil-accel-rd-ku115:4ddr-xpr
 
 XOS=krnl_nearest
 
 # Nearest Neighbor xclbin
 krnl_nearest_XOS=krnl_nearest
 krnl_nearest_LDCLFLAGS=--nk krnl_linear_search:2
-krnl_nearest_NDEVICES=xilinx:adm-pcie-7v3:1ddr
+krnl_nearest_NDEVICES=xilinx:xil-accel-rd-ku115:4ddr-xpr
 
 XCLBINS=krnl_nearest
 

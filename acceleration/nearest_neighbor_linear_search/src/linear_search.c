@@ -256,12 +256,100 @@ class Test
             std::cout << "Init " << id << std::endl;
         }
 
-        void run(){
+        int run(float arg1,float arg2,float arg3){
             std::cout << "Run " << id << std::endl;
+
+						char *targets_filename = "data/targets.txt";
+						char *refs_filename = NULL;
+
+						int check_results = 0;
+
+						float* queries = (float*) malloc(QUERIES * DIMS * sizeof(float));
+						float* targets = (float*) malloc(TARGETS * DIMS * sizeof(float));
+						unsigned int* indices = (unsigned int*) malloc(QUERIES * sizeof(unsigned int));
+
+
+						queries[0] = arg1;
+						queries[1] = arg2;
+						queries[2] = arg3;
+						printf("finish reading data, queries[0]= %f",queries[0]);
+
+
+						linear_search_read_datafile(targets_filename, targets, TARGETS*DIMS);
+						printf("Target[0] = %f\n", targets[0]);
+
+						xcl_world world;
+						cl_program program;
+						cl_kernel krnl;
+
+						cl_mem dev_targets, dev_queries, dev_indices;
+
+						linear_search_init(&world, &program, &krnl,
+						    &dev_targets, &dev_queries, &dev_indices);
+
+						unsigned long duration = linear_search_exec(
+						    &world, &krnl, targets, queries, indices,
+						    &dev_targets, &dev_queries, &dev_indices);
+
+						linear_search_exit(&world, &program, &krnl,
+						    &dev_targets, &dev_queries, &dev_indices);
+
+						printf("Kernel Execution Time: %ld ns\n", duration);
+
+						float *refs;
+
+
+						int pass = 1;
+
+						for (size_t i = 0; i < QUERIES; i++) {
+							size_t j = indices[i];
+
+							if(j > TARGETS) {
+								printf("ERROR: target[%lu] invalid\n", j);
+								continue;
+							}
+
+							float dist_x = queries[DIMS*i + 0] - targets[DIMS*j + 0];
+							float dist_y = queries[DIMS*i + 1] - targets[DIMS*j + 1];
+							float dist_z = queries[DIMS*i + 2] - targets[DIMS*j + 2];
+
+							float dist = dist_x * dist_x + dist_y * dist_y + dist_z * dist_z;
+
+							printf ("Closest to queries[%5lu] = [% 6.2f % 6.2f % 6.2f] is targets[%5lu] = [% 6.2f % 6.2f % 6.2f] : distance = % 7.2f\n",
+							        i, queries[DIMS*i + 0],  queries[DIMS*i + 1], queries[DIMS*i + 2],
+							        j, targets[DIMS*j + 0], targets[DIMS*j + 1], targets[DIMS*j +2],
+							        dist);
+
+							if (check_results == 1) {
+								size_t k = (size_t) refs[i];
+								if (j != k) {
+									float dist_rx = queries[DIMS*i + 0] - targets[DIMS*k + 0];
+									float dist_ry = queries[DIMS*i + 1] - targets[DIMS*k + 1];
+									float dist_rz = queries[DIMS*i + 2] - targets[DIMS*k + 2];
+
+									float dist_r = dist_rx * dist_rx + dist_ry * dist_ry + dist_rz * dist_rz;
+
+									if (dist_r < dist) {
+										printf("ERROR: Closer target at targets[%5lu] = [% 6.2f % 6.2f % 6.2f] : distance = % 7.2f\n",
+										       k, targets[DIMS*k + 0], targets[DIMS*k + 1], targets[DIMS*k + 2], dist_r);
+										pass = 0;
+									}
+								}
+							}
+						}
+
+
+						free(queries);
+						free(targets);
+						free(indices);
+
+
+
+						return 1;
         }
 };
 
 extern "C" {
     Test* Init(int id){ return new Test(id); }
-    void Run(Test* t){ t->run(); }
+    void Run(Test* t,float arg1,float arg2,float arg3){ t->run(arg1,arg2,arg3); }
 }
