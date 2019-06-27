@@ -8,10 +8,10 @@ include $(COMMON_REPO)/libs/opencl/opencl.mk
 # Nearest Neighbor Search Application
 nearest_SRCS=./src/linear_search.c $(xcl_SRCS)
 nearest_HDRS=./src/linear_search.h $(xcl_HDRS)
-nearest_CXXFLAGS=-I./src/ -I$(XILINX_SDACCEL)/Vivado_HLS/include/ $(opencl_CXXFLAGS) $(xcl_CXXFLAGS)
+nearest_CXXFLAGS=-I./src/ -I$(XILINX_SDACCEL)/Vivado_HLS/include/ $(opencl_CXXFLAGS) $(xcl_CXXFLAGS) -shared -fPIC,-soname,libmain.so -o libmain.so
 nearest_LDFLAGS=$(opencl_LDFLAGS)
 
-EXES=nearest
+EXES=mainlib.so
 
 # Nearest Neighbor Kernel
 krnl_nearest_SRCS=./src/krnl_linear_search.cpp
@@ -36,4 +36,3 @@ check_NDEVICES=$(krnl_nearest_NDEVICES)
 CHECKS=check
 
 include $(COMMON_REPO)/utility/rules.mk
-
