@@ -104,13 +104,13 @@ unsigned long linear_search_exec(
 }
 
 int main(int argc, char** argv) {
-	if (!(argc == 3 || argc == 4)) {
+	/*if (!(argc == 3 || argc == 4)) {
 		printf("usage: %s <queries.txt> <targets.txt> [<ref.txt>]\n", argv[0]);
 		return EXIT_FAILURE;
-	}
+	}*/
 
-	char *queries_filename = argv[1];
-	char *targets_filename = argv[2];
+	//char *queries_filename = argv[1];
+	char *targets_filename = "data/targets.txt";
 	char *refs_filename = NULL;
 
 	int check_results = 0;
@@ -129,8 +129,19 @@ int main(int argc, char** argv) {
 		return EXIT_FAILURE;
 	}
 
-	    
-	linear_search_read_datafile(queries_filename, queries, QUERIES*DIMS);
+
+//	linear_search_read_datafile(queries_filename, queries, QUERIES*DIMS);
+// replace this that something fill in queries with float
+// !!!!!!LOOK HERE !!!!!!
+	printf("inputdata:");
+	int i =0;
+	while(!feof(stdin)) {
+			float buf;
+			scanf("%f\n", &buf);
+			queries[i] = buf;
+			i++;
+	}
+	printf("finish reading data, queries[0]= %f",queries[0]);
 
 	for(size_t i = 0; i < QUERIES*DIMS; i++) {
 		if (!isfinite(queries[i])) {
@@ -232,4 +243,25 @@ int main(int argc, char** argv) {
 	printf("INFO: Test Passed\n");
 
 	return EXIT_SUCCESS;
+}
+
+class Test
+{
+    private:
+        int id;
+
+    public:
+        Test(int x){
+            id = x;
+            std::cout << "Init " << id << std::endl;
+        }
+
+        void run(){
+            std::cout << "Run " << id << std::endl;
+        }
+};
+
+extern "C" {
+    Test* Init(int id){ return new Test(id); }
+    void Run(Test* t){ t->run(); }
 }

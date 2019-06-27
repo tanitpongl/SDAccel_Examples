@@ -1,0 +1,28 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="solution_OCL_REGION_0"/>
+    </name>
+    <project>
+        <value string="krnl_linear_search"/>
+    </project>
+    <targetInfo>
+        <TargetInfo value="xcku115:-flvb2104:-2-e"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/kintexu/kintexu" name="DefaultPlatform"/>
+        <library value="xilinx/kintexu/kintexu_fpv7" name="DefaultPlatform"/>
+    </libraryList>
+    <config>
+        <config_sdx optimization_level="0" target="xocc"/>
+        <config_rtl vivado_phys_opt="none" register_reset_num="3" auto_prefix="1" enable_maxiConservative="1"/>
+        <config_bind effort="medium"/>
+        <config_schedule effort="medium" relax_ii_for_timing="1"/>
+        <config_compile pipeline_loops="64" name_max_length="256" skip_transform="1"/>
+        <config_dataflow strict_mode="warning"/>
+        <config_interface m_axi_addr64="1"/>
+    </config>
+    <clockList>
+        <clock name="default" default="false" uncertainty="27.000000%" period="300MHz"/>
+    </clockList>
+</AutoPilot:solution>
+

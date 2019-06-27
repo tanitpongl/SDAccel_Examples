@@ -1,0 +1,2 @@
+performing high-level synthesis for kernel: krnl_linear_search
+Log file:/mnt/project/tl6/example_repo/SDAccel_Examples/acceleration/nearest_neighbor_linear_search/_x/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0/impl/kernels/krnl_linear_search/vivado_hls.log

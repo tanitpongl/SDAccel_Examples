@@ -1,0 +1,3 @@
+
+Õ
+Bxocc_compile_krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0$c45baff5-caaf-487e-a94e-cd93c3488103Àxocc  -t sw_emu --platform xilinx_kcu1500_4ddr-xpr_4_0 --save-temps -c -k krnl_linear_search -Isrc -oxclbin/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0.xo src/krnl_linear_search.cpp *ñ"ì/mnt/project/tl6/example_repo/SDAccel_Examples/acceleration/nearest_neighbor_linear_search/_x/reports/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0/xocc_compile_krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0_guidance.html2±"¬/mnt/project/tl6/example_repo/SDAccel_Examples/acceleration/nearest_neighbor_linear_search/_x/xocc_compile_krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0_guidance.pb

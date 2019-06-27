@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="krnl_nearest.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0">
+  <platform vendor="xilinx" boardid="kcu1500" name="4ddr-xpr" featureRomTime="1496957955">
+    <version major="4" minor="0"/>
+    <description>This platform targets the Kintex UltraScale KCU1500 Acceleration Development Board. This high-performance acceleration platform features four channels of DDR4-2400 SDRAM, the expanded partial reconfiguration flow for high fabric resource availability, and Xilinx DMA Subsystem for PCI Express with PCIe Gen3 x8 connectivity.</description>
+    <board name="xilinx.com:kcu1500:1.0" vendor="xilinx.com" fpga="XCKU115-FLVB2104-2-E">
+      <interfaces>
+        <interface id="int1" name="PCIe" type=""/>
+      </interfaces>
+      <memories>
+        <memory name="expanded_region_memc_ddrmem_0" type="ddr4" size="4GB"/>
+        <memory name="expanded_region_memc_ddrmem_1" type="ddr4" size="4GB"/>
+        <memory name="expanded_region_memc_ddrmem_2" type="ddr4" size="4GB"/>
+        <memory name="expanded_region_memc_ddrmem_3" type="ddr4" size="4GB"/>
+      </memories>
+      <images>
+        <image name="kcu1500_board.jpeg" type="HDPI"/>
+        <image name="" type="MDPI"/>
+        <image name="" type="LDPI"/>
+      </images>
+      <id>
+        <vendor>0x10EE</vendor>
+        <device>0x4B28</device>
+        <subsystem>0x4340</subsystem>
+      </id>
+    </board>
+    <build_flow/>
+    <host architecture="x86_64"/>
+    <device name="fpga0" fpgaDevice="kintexu:xcku115:flvb2104:-2:e" addrWidth="34">
+      <core name="OCL_REGION_0" target="csim" type="clc_region" clockFreq="0MHz" numComputeUnits="16">
+        <kernel name="krnl_linear_search" language="c" vlnv="xilinx.com:hls:krnl_linear_search:1.0" preferredWorkGroupSizeMultiple="1" workGroupSize="1" debug="false" interrupt="true">
+          <port name="M_AXI_GMEM" mode="master" range="0xFFFFFFFF" dataWidth="32" portType="addressable" base="0x0"/>
+          <port name="M_AXI_GMEM1" mode="master" range="0xFFFFFFFF" dataWidth="32" portType="addressable" base="0x0"/>
+          <port name="S_AXI_CONTROL" mode="slave" range="0x1000" dataWidth="32" portType="addressable" base="0x0"/>
+          <arg name="targets" addressQualifier="1" id="0" port="M_AXI_GMEM" size="0x8" offset="0x10" hostOffset="0x0" hostSize="0x8" type="float*"/>
+          <arg name="queries" addressQualifier="1" id="1" port="M_AXI_GMEM" size="0x8" offset="0x1C" hostOffset="0x0" hostSize="0x8" type="float*"/>
+          <arg name="indices" addressQualifier="1" id="2" port="M_AXI_GMEM1" size="0x8" offset="0x28" hostOffset="0x0" hostSize="0x8" type="uint*"/>
+          <compileWorkGroupSize x="1" y="1" z="1"/>
+          <maxWorkGroupSize x="1" y="1" z="1"/>
+          <string_table/>
+          <instance name="krnl_linear_search_1">
+            <addrRemap base="0x00000000" port="S_AXI_CONTROL"/>
+          </instance>
+          <instance name="krnl_linear_search_2">
+            <addrRemap base="0x00001000" port="S_AXI_CONTROL"/>
+          </instance>
+        </kernel>
+        <connection srcType="kernel" srcInst="krnl_linear_search_1" srcPort="M_AXI_GMEM" dstType="core" dstInst="OCL_REGION_0" dstPort="M00_AXI"/>
+        <connection srcType="kernel" srcInst="krnl_linear_search_1" srcPort="M_AXI_GMEM1" dstType="core" dstInst="OCL_REGION_0" dstPort="M00_AXI"/>
+        <connection srcType="core" srcInst="OCL_REGION_0" srcPort="S_AXI" dstType="kernel" dstInst="krnl_linear_search_1" dstPort="S_AXI_CONTROL"/>
+        <connection srcType="kernel" srcInst="krnl_linear_search_2" srcPort="M_AXI_GMEM" dstType="core" dstInst="OCL_REGION_0" dstPort="M00_AXI"/>
+        <connection srcType="kernel" srcInst="krnl_linear_search_2" srcPort="M_AXI_GMEM1" dstType="core" dstInst="OCL_REGION_0" dstPort="M00_AXI"/>
+        <connection srcType="core" srcInst="OCL_REGION_0" srcPort="S_AXI" dstType="kernel" dstInst="krnl_linear_search_2" dstPort="S_AXI_CONTROL"/>
+      </core>
+    </device>
+  </platform>
+</project>

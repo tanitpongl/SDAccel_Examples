@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="krnl_linear_search" LaunchDir="/mnt/project/tl6/example_repo/SDAccel_Examples/acceleration/nearest_neighbor_linear_search/_x/krnl_linear_search.sw_emu.xilinx_kcu1500_4ddr-xpr_4_0/impl/kernels/krnl_linear_search" FlowId="Build_IP" FromStepId="vivado_hls" ToStepId="vivado_hls"/>
+</Runs>
+
